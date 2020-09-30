@@ -1,4 +1,5 @@
 from enum import Enum
+from math import pi
 
 class Card:
     def __init__(self, gate):
@@ -23,8 +24,8 @@ class Gate(Enum):
     crx = 22
     cry = 23
     crz = 24
-    cu1 = 25
-    cu3 = 26
+    cu1 = 23
+    cu3 = 24
     rxx = 27
     rzz = 28
 
@@ -32,49 +33,49 @@ class Gate(Enum):
         return self.name
     
     def getParamCount(self):
-        if self.gate == Gate.h:
+        if self == Gate.h:
             return 1
-        elif self.gate == Gate.x:
+        elif self == Gate.x:
             return 1
-        elif self.gate == Gate.cx:
-            return 1
-        elif self.gate == Gate.ccx:
+        elif self == Gate.cx:
             return 2
-        elif self.gate == Gate.swap:
-            return 2
-        elif self.gate == Gate.cswap:
+        elif self == Gate.ccx:
             return 3
-        elif self.gate == Gate.rx:
+        elif self == Gate.swap:
+            return 2
+        elif self == Gate.cswap:
+            return 3
+        elif self == Gate.rx:
             return 1
-        elif self.gate == Gate.ry:
+        elif self == Gate.ry:
             return 1
-        elif self.gate == Gate.rz:
+        elif self == Gate.rz:
             return 1
-        elif self.gate == Gate.u3:
+        elif self == Gate.u3:
             return 1
-        elif self.gate == Gate.y:
+        elif self == Gate.y:
             return 1
-        elif self.gate == Gate.u2:
+        elif self == Gate.u2:
             return 1
-        elif self.gate == Gate.ch:
+        elif self == Gate.ch:
             return 2
-        elif self.gate == Gate.cy:
+        elif self == Gate.cy:
             return 2
-        elif self.gate == Gate.cz:
+        elif self == Gate.cz:
             return 2
-        elif self.gate == Gate.crx:
+        elif self == Gate.crx:
             return 2
-        elif self.gate == Gate.cry:
+        elif self == Gate.cry:
             return 2
-        elif self.gate == Gate.crz:
+        elif self == Gate.crz:
             return 2
-        elif self.gate == Gate.cu1:
+        elif self == Gate.cu1:
             return 2
-        elif self.gate == Gate.cu3:
+        elif self == Gate.cu3:
+            return 2        
+        elif self == Gate.rxx:
             return 2
-        elif self.gate == Gate.rxx:
-            return 2
-        elif self.gate == Gate.rzz:
+        elif self == Gate.rzz:
             return 2
 
 def addGateToCircuit(circuit, gate, params):
@@ -85,23 +86,23 @@ def addGateToCircuit(circuit, gate, params):
     elif gate == Gate.cx:
         circuit.cx(params[0], params[1])
     elif gate == Gate.ccx:
-        circuit.ccx(params[0], params[1])
+        circuit.ccx(params[0], params[1], params[2])
     elif gate == Gate.swap:
         circuit.swap(params[0], params[1])
     elif gate == Gate.cswap:
         circuit.cswap(params[0], params[1], params[2])
     elif gate == Gate.rx:
-        circuit.rx(params[0])
+        circuit.rx(pi/2, params[0])
     elif gate == Gate.ry:
-        circuit.ry(params[0])
+        circuit.ry(pi/2, params[0])
     elif gate == Gate.rz:
-        circuit.rz(params[0])
+        circuit.rz(pi/2, params[0])
     elif gate == Gate.u3:
-        circuit.u3(params[0])
+        circuit.u3(pi/2, pi/2, pi/2, params[0])
     elif gate == Gate.y:
         circuit.y(params[0])
     if gate == Gate.u2:
-        circuit.u2(params[0])
+        circuit.u2(pi/2, pi/2, params[0])
     elif gate == Gate.ch:
         circuit.ch(params[0], params[1])
     elif gate == Gate.cy:
@@ -109,16 +110,16 @@ def addGateToCircuit(circuit, gate, params):
     elif gate == Gate.cz:
         circuit.cz(params[0], params[1])
     elif gate == Gate.crx:
-        circuit.crx(params[0], params[1])
+        circuit.crx(pi/2, params[0], params[1])
     elif gate == Gate.cry:
-        circuit.cry(params[0], params[1])
+        circuit.cry(pi/2, params[0], params[1])
     elif gate == Gate.crz:
-        circuit.crz(params[0], params[1])
+        circuit.crz(pi/2, params[0], params[1])
     elif gate == Gate.cu1:
-        circuit.cu1(params[0], params[1])
+        circuit.cu1(pi/2, params[0], params[1])
     elif gate == Gate.cu3:
-        circuit.cu3(params[0], params[1])
+        circuit.cu3(pi/2, pi/2, pi/2, params[0], params[1])
     elif gate == Gate.rxx:
-        circuit.rxx(params[0], params[1])
+        circuit.rxx(pi/2, params[0], params[1])
     elif gate == Gate.rzz:
-        circuit.rzz(params[0], params[1])
+        circuit.rzz(pi/2, params[0], params[1])
