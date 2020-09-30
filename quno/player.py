@@ -21,6 +21,7 @@ class Player (object) :
         firstLine = ""
         secondLine = ""
         thirdLine = ""
+        # build a 'card like' representation for the cmd output
         for card in self.cards:
             firstLine += "_" * (len(card.gate.get()) + 2) + " "
             secondLine += "|" + card.gate.get() + "| "
@@ -36,5 +37,9 @@ class Player (object) :
     """ Removes the card at the specified index"""
     def removeCard(self, index) :
         self.cards.remove(self.cards[index])
+    """ Returns if the player has more cards to place"""
     def hasCards(self):
         return len(self.cards)>0
+    """ Returns the number of cards"""
+    def lenCards(self):
+        return len(self.cards)
