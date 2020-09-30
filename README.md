@@ -24,6 +24,47 @@ To evaluate the result of the game, the course of the game is converted to a exe
 
 Both vectors |0> and |1> can only be used as inputs for binary or ternary operators. Unary operators can only be used on |x>.
 
+### Game loop
+
+**easy mode**\
+_normal mode_\
+*hard mode*
+
+```plantuml
+@startuml
+start
+:enter game mode;
+:enter player count;
+:enter player names;
+:print player goal configuration;
+:print initial state;
+while (player has cards)
+  :print player cards;
+    if (easy mode) then (yes)
+        :print probabilities;
+            repeat :try to place card;
+                :choose card;
+                :choose parameters;
+            backward:Remove card from circuit;
+            repeat while (placement confirmed?)
+    elseif (normal mode) then (yes)
+        :print probabilities;
+        :choose card;
+        :choose parameters;
+    elseif (hard mode) then (yes)
+        :print circuit;
+        :choose card;
+        :choose parameters;
+endif
+  :next player;
+endwhile
+
+:calculate result;
+
+stop
+@enduml
+```
+
 ## Authors
 
 Julia Butte, Sebastian Weber, Thomas Weber
