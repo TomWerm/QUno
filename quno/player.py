@@ -4,7 +4,7 @@ class Player (object) :
         self.name = name
         self.cards = cards          
     def getInfo(self) :
-        return "Name:" + self.name + ", endconfiguration:" + self.endconfig
+        return "Name:" + self.name + ", endconfiguration:" + str(self.endconfig)
     def getCards(self) :
         cardsStr = ""
         for card in self.cards:
