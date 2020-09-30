@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Sep 30 11:50:50 2020
+Created on Wed Sep 30 2020
 
-@author: Sebastian
+@author: Julia Butte, Sebastian Weber, Thomas Weber
 """
 
+#Get console input
 def getInput(text):
     return input(text)

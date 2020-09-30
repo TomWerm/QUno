@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Sep 30 12:27:21 2020
+Created on Wed Sep 30 2020
 
-@author: Sebastian
+@author: Julia Butte, Sebastian Weber, Thomas Weber
 """
 
 from qiskit import *
 
+#Run one measurement of the @param circuit and format the result
 def calculateResult(circuit):
     
     # Use Aer's qasm_simulator
@@ -24,8 +25,7 @@ def calculateResult(circuit):
     # Returns counts
     counts = result.get_counts()
     
-    #Extract the result from the first (and only) simulation run
-
+    #Format according to [q0, q1, q2] with the measured values for the qbits q0, q1 and q2
     for count in counts.items():
         x, y = eval(count.__str__())
         result = "["

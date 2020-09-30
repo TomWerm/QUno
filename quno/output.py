@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Sep 30 12:10:25 2020
+Created on Wed Sep 30 2020
 
-@author: Sebastian
+@author: Julia Butte, Sebastian Weber, Thomas Weber
 """
 
 from qiskit.quantum_info import Statevector
 
+#Calculate the measurement probability for the @param circuit and format it
 def getProbabilityOutput(circuit):
+    #Calculate the measurement probability
     probabilities = Statevector.from_instruction(circuit).probabilities_dict()
     probabilityOutput = "Probability distribution: "
+    
+    #Format according to [q0, q1, q2], probabaility; ... for the qbits q0, q1 and q2
     for probability in probabilities.items():
         x, y = eval(probability.__str__())
         probabilityOutput += "["
@@ -18,10 +22,8 @@ def getProbabilityOutput(circuit):
         probabilityOutput = probabilityOutput[0:len(probabilityOutput)-2]
         probabilityOutput += "] , " + str(round(y, 3)) + "; "
     return probabilityOutput
-
-def getCircuitDrawn(circuit):
-    return circuit.draw()
     
+#Output method 
 def output(probabilityOutput):
     print(probabilityOutput)
     
