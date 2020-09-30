@@ -4,7 +4,7 @@ class Player (object) :
         self.name = name
         self.cards = cards          
     def getInfo(self) :
-        return self.name + " aiming for: " + str(self.endconfig.data)
+        return self.name + " aiming for: " + str(self.endconfig)
     def getCards(self) :
         firstLine = ""
         secondLine = ""

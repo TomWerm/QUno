@@ -25,6 +25,7 @@ def calculateResult(circuit):
     counts = result.get_counts()
     
     #Extract the result from the first (and only) simulation run
+
     for count in counts.items():
-        x, y = eval(counts.items()[0].__str__())
+        x, y = eval(count.__str__())
         return str(x)
