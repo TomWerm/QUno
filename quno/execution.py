@@ -8,6 +8,7 @@ Created on Wed Sep 30 2020
 from qiskit import *
 
 #Run one measurement of the @param circuit and format the result
+#Adapted from an example of IBM from https://qiskit.org/documentation/getting_started.html
 def calculateResult(circuit):
     
     # Use Aer's qasm_simulator

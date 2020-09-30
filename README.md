@@ -4,25 +4,20 @@ We are working on the Informatik2020 Digital Innovation Challenge. We chose the 
 
 ## Idea
 
+The idea is to use three qbits as state. This state can be changed by using specific gates, which are represented as cards. Every player gets a target state, which he tries to come close to during the game by placing those gates. At the end the player with the closest target state to the measurement of the complete circuit, which consists of the placed gates, wins.
+This approach is a way of gamification of how qbits and the gates work and we hope that it can help people gain fascination for quantum physics.
+
 ### Initial state
 
-You play the game QUno with 2 players. Both players draw X cards from the card pile. Every card represents a quibit gate. There are three quibits, one of the is modifiable(x). The starting configuartion looks as following:
-
-```
-|0> 
-|x> = sqrt(2)/2*|0> + sqrt(2)/2*|1>
-|1>
-```
+Before the game starts the number of players, their names, the number of cards per player (same for every player) and the game mode (easy, normal and hard) can be specified. The game modes change the available information for the players and can be seen in the UML-diagram. In easy mode for example a player can view the effects of a gate before he has to confirm the placement. The game can be played with 2 to 8 players. The players get the set number of cards. Every card represents a qbit gate. There are three qbits representing the state. 
 
 ### Playing phase
 
-The playing phase is turn-based. In each turn, both players can place a card on either |x>, |0> and |x> / |1> and |x>, |0> and |1> and |x>. The result is returned as the superposition of |x>. After all cards are placed, the playing phase ends.
+The playing phase is turn-based. In each turn, both players can place a card on one or more qbits of |q0>, |q1> and |q2> depending on the number of arguments of the corresponding gate. After all cards are placed, the playing phase ends.
 
 ### Evaluation phase
 
-To evaluate the result of the game, the course of the game is converted to a executable Quibit computation and can be send to an IBM Quibit server. Player 0 wins if the Quibit evaluates to |0>, player 1 wins if the Quibit evaluates to |1>.
-
-Both vectors |0> and |1> can only be used as inputs for binary or ternary operators. Unary operators can only be used on |x>.
+To evaluate the result of the game, the course of the game is converted to a executable Quibit computation and can be send to an IBM Quibit server. We choose to use the simulation from the Quiskit framework, because it is much faster and we think this is required for a game that could be played multiple times in a row. The player with the lowest hamming distance of his target state and the measured state wins.
 
 ### Game loop
 
