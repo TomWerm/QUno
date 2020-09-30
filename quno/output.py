@@ -2,7 +2,7 @@
 """
 Created on Wed Sep 30 12:10:25 2020
 
-@author: Sebastian
+@author: Julia Butte, Sebastian Weber, Thomas Weber
 """
 
 from qiskit.quantum_info import Statevector
