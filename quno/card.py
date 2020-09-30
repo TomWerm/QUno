@@ -1,10 +1,19 @@
+# -- coding: utf-8 --
+"""
+Created on Wed Sep 30 2020
+
+@author: Julia Butte, Sebastian Weber, Thomas Weber
+"""
+
 from enum import Enum
 from math import pi
 
+""" This class represents a playing card """
 class Card:
     def __init__(self, gate):
         self.gate = gate
 
+""" This enum contains the gates that can be applied to the qubits"""
 class Gate(Enum):
     h = 1
     x = 2
@@ -31,7 +40,8 @@ class Gate(Enum):
 
     def get(self):
         return self.name
-    
+
+    """ Returns the number of parameters which are needed to apply a gate"""
     def getParamCount(self):
         if self == Gate.h:
             return 1
@@ -78,6 +88,7 @@ class Gate(Enum):
         elif self == Gate.rzz:
             return 2
 
+""" Applies the  given gate with the given parameters to the circuit"""
 def addGateToCircuit(circuit, gate, params):
     if gate == Gate.h:
         circuit.h(params[0])
