@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Sep 30 12:10:25 2020
+Created on Wed Sep 30 2020
 
 @author: Julia Butte, Sebastian Weber, Thomas Weber
 """
@@ -13,7 +13,7 @@ def getProbabilityOutput(circuit):
     probabilities = Statevector.from_instruction(circuit).probabilities_dict()
     probabilityOutput = "Probability distribution: "
     
-    #Format according to [q0, q1, q2], probabaility; ...
+    #Format according to [q0, q1, q2], probabaility; ... for the qbits q0, q1 and q2
     for probability in probabilities.items():
         x, y = eval(probability.__str__())
         probabilityOutput += "["
