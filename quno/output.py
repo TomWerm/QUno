@@ -7,9 +7,9 @@ Created on Wed Sep 30 2020
 
 from qiskit.quantum_info import Statevector
 
-#Calculate the maesurement probability for the @param circuit and format it
+#Calculate the measurement probability for the @param circuit and format it
 def getProbabilityOutput(circuit):
-    #Calculate the maesurement probability
+    #Calculate the measurement probability
     probabilities = Statevector.from_instruction(circuit).probabilities_dict()
     probabilityOutput = "Probability distribution: "
     
