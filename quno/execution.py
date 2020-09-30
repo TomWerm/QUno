@@ -28,4 +28,9 @@ def calculateResult(circuit):
 
     for count in counts.items():
         x, y = eval(count.__str__())
-        return str(x)
+        result = "["
+        for c in str(x):
+            result+= c + ", "
+        result = result[0:len(result)-2]
+        result += "]"
+        return result
