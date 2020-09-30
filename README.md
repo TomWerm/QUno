@@ -39,10 +39,10 @@ start
 :print player goal configuration;
 :print initial state;
 while (player has cards)
+  :print circuit;
   :print player cards;
     if (easy mode) then (yes)
-        :print probabilities;
-            repeat :try to place card;
+        repeat :print probabilities;
                 :choose card;
                 :choose parameters;
             backward:Remove card from circuit;
@@ -52,10 +52,10 @@ while (player has cards)
         :choose card;
         :choose parameters;
     elseif (hard mode) then (yes)
-        :print circuit;
         :choose card;
         :choose parameters;
 endif
+  :remove card from player;
   :next player;
 endwhile
 
