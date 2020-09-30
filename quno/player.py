@@ -4,12 +4,16 @@ class Player (object) :
         self.name = name
         self.cards = cards          
     def getInfo(self) :
-        return "Name:" + self.name + ", endconfiguration:" + str(self.endconfig)
+        return self.name + " aiming for: " + str(self.endconfig.data)
     def getCards(self) :
-        cardsStr = ""
+        firstLine = ""
+        secondLine = ""
+        thirdLine = ""
         for card in self.cards:
-            cardsStr += card.gate.get() + "; "
-        return cardsStr
+            firstLine += "_" * (len(card.gate.get()) + 2) + " "
+            secondLine += "|" + card.gate.get() + "| "
+            thirdLine += "‾" * (len(card.gate.get()) + 2) + " "
+        return firstLine + "\n" + secondLine + "\n" + thirdLine
     def getCard(self, index) :
         return self.cards[index]
     def addCard(self, card) :

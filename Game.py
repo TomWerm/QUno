@@ -1,5 +1,6 @@
 import sys
 import abc
+import os
 from abc import ABC
 from random import choice
 
@@ -31,17 +32,22 @@ class Game(ABC):
         return ""
 
     @abc.abstractmethod
-    def placeCard(self):
+    def placeCard(self, activePlayer):
         pass
 
     def mainLoop(self):
         activePlayerIndex = 0
         while self.players[activePlayerIndex].hasCards():
+            cls()
             activePlayer = self.players[activePlayerIndex]
             output('Turn of ' + activePlayer.getInfo())
+            printSeparation()
+            output(self.circuit.draw())
+            printSeparation()
             output(activePlayer.getCards())
-            self.placeCard()
-            activePlayerIndex = activePlayerIndex + 1 % len(self.players)-1
+            printSeparation()
+            self.placeCard(activePlayer)
+            activePlayerIndex = (activePlayerIndex + 1) % len(self.players)
         output(calculateResult(self.circuit))
 
     def printPlayers(self):
@@ -58,8 +64,7 @@ class Game(ABC):
 
     @staticmethod
     def randomValue():
-        return Statevector([ 0-1j, -1+0j, 1-0j],
-            dims=(Game.qibit_count,))
+        return Statevector([ 0-1j, -1+0j, 1-0j],dims=(Game.qibit_count,))
 
     @staticmethod
     def randomCard():
@@ -75,8 +80,10 @@ class Game(ABC):
     @staticmethod
     def initializeGame(): 
         while True :
-            mode = getInput('Please enter the game mode (easy, normal or hard): ')
-            playercount = eval(getInput('Please enter the number of players: '))
+            # mode = getInput('Please enter the game mode (easy, normal or hard): ')
+            mode = 'easy'
+            # playercount = int(getInput('Please enter the number of players: '))
+            playercount = 2
             players = []
             for index in range (0, playercount):
                 name = getInput('Please enter a name for player ' + str(index) + ': ')
@@ -91,6 +98,18 @@ class Game(ABC):
             elif mode == 'hard':
                 return HardGame(playercount, players, circuit)
 
+    def getCardParametersAndPlaceCard(self, activePlayer):
+        cardIndex = int(getInput('Choose a card index(0..5): '))
+        card = activePlayer.getCard(cardIndex)
+        numberParams = card.gate.getParamCount()
+        params = []
+        for param in range (0, numberParams):
+            params.append(int(getInput('Choose parameter ' + str(param) + ' out of ' + str(numberParams) + ' for gate ' + card.gate.get() + ': ')))
+        addGateToCircuit(self.circuit, card.gate, params)
+        return cardIndex
+
+    
+
     
 
 class EasyGame(Game):
@@ -98,25 +117,42 @@ class EasyGame(Game):
     def getGameMode(self):
         return "easy"
 
-    def placeCard(self):
-        addGateToCircuit(self.circuit, Gate.h, [0])
-        pass
+    def placeCard(self, activePlayer):
+        output(getProbabilityOutput(self.circuit))
+        confirmed = False
+        while not confirmed:
+            cardIndex = self.getCardParametersAndPlaceCard(activePlayer)
+            output(getProbabilityOutput(self.circuit))
+            if getInput('Please confirm your choice with \'Yes\'') == 'Yes':
+                activePlayer.removeCard(cardIndex)
+                confirmed = True
+            else:
+                self.circuit.data.pop(0)
+            
 
 class NormalGame(Game):
     Game
     def getGameMode(self):
         return "normal"
 
-    def placeCard(self):
-        pass
+    def placeCard(self, activePlayer):
+        output(getProbabilityOutput(self.circuit))
+        activePlayer.removeCard(self.getCardParametersAndPlaceCard(activePlayer))
 
 class HardGame(Game):
     Game
     def getGameMode(self):
         return "hard"
 
-    def placeCard(self):
-        pass
+    def placeCard(self, activePlayer):
+        activePlayer.removeCard(self.getCardParametersAndPlaceCard(activePlayer))
+
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
+def printSeparation():
+        output('-------------------------------------------------------------')
 
 
 

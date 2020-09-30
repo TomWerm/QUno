@@ -32,49 +32,49 @@ class Gate(Enum):
         return self.name
     
     def getParamCount(self):
-        if self.gate == Gate.h:
+        if self == Gate.h:
             return 1
-        elif self.gate == Gate.x:
+        elif self == Gate.x:
             return 1
-        elif self.gate == Gate.cx:
+        elif self == Gate.cx:
             return 1
-        elif self.gate == Gate.ccx:
+        elif self == Gate.ccx:
             return 2
-        elif self.gate == Gate.swap:
+        elif self == Gate.swap:
             return 2
-        elif self.gate == Gate.cswap:
+        elif self == Gate.cswap:
             return 3
-        elif self.gate == Gate.rx:
+        elif self == Gate.rx:
             return 1
-        elif self.gate == Gate.ry:
+        elif self == Gate.ry:
             return 1
-        elif self.gate == Gate.rz:
+        elif self == Gate.rz:
             return 1
-        elif self.gate == Gate.u3:
+        elif self == Gate.u3:
             return 1
-        elif self.gate == Gate.y:
+        elif self == Gate.y:
             return 1
-        elif self.gate == Gate.u2:
+        elif self == Gate.u2:
             return 1
-        elif self.gate == Gate.ch:
+        elif self == Gate.ch:
             return 2
-        elif self.gate == Gate.cy:
+        elif self == Gate.cy:
             return 2
-        elif self.gate == Gate.cz:
+        elif self == Gate.cz:
             return 2
-        elif self.gate == Gate.crx:
+        elif self == Gate.crx:
             return 2
-        elif self.gate == Gate.cry:
+        elif self == Gate.cry:
             return 2
-        elif self.gate == Gate.crz:
+        elif self == Gate.crz:
             return 2
-        elif self.gate == Gate.cu1:
+        elif self == Gate.cu1:
             return 2
-        elif self.gate == Gate.cu3:
+        elif self == Gate.cu3:
             return 2
-        elif self.gate == Gate.rxx:
+        elif self == Gate.rxx:
             return 2
-        elif self.gate == Gate.rzz:
+        elif self == Gate.rzz:
             return 2
 
 def addGateToCircuit(circuit, gate, params):
