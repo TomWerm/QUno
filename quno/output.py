@@ -9,10 +9,14 @@ from qiskit.quantum_info import Statevector
 
 def getProbabilityOutput(circuit):
     probabilities = Statevector.from_instruction(circuit).probabilities_dict()
-    probabilityOutput = "Wahrscheinlichkeitsverteilung: "
+    probabilityOutput = "Probability distribution: "
     for probability in probabilities.items():
         x, y = eval(probability.__str__())
-        probabilityOutput += str(x) + ", " + str(round(y, 3)) + "; "
+        probabilityOutput += "["
+        for c in str(x):
+            probabilityOutput+= c + ", "
+        probabilityOutput = probabilityOutput[0:len(probabilityOutput)-2]
+        probabilityOutput += "] , " + str(round(y, 3)) + "; "
     return probabilityOutput
 
 def getCircuitDrawn(circuit):
