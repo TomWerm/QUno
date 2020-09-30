@@ -30,6 +30,52 @@ class Gate(Enum):
 
     def get(self):
         return self.name
+    
+    def getParamCount(self):
+        if self.gate == Gate.h:
+            return 1
+        elif self.gate == Gate.x:
+            return 1
+        elif self.gate == Gate.cx:
+            return 1
+        elif self.gate == Gate.ccx:
+            return 2
+        elif self.gate == Gate.swap:
+            return 2
+        elif self.gate == Gate.cswap:
+            return 3
+        elif self.gate == Gate.rx:
+            return 1
+        elif self.gate == Gate.ry:
+            return 1
+        elif self.gate == Gate.rz:
+            return 1
+        elif self.gate == Gate.u3:
+            return 1
+        elif self.gate == Gate.y:
+            return 1
+        elif self.gate == Gate.u2:
+            return 1
+        elif self.gate == Gate.ch:
+            return 2
+        elif self.gate == Gate.cy:
+            return 2
+        elif self.gate == Gate.cz:
+            return 2
+        elif self.gate == Gate.crx:
+            return 2
+        elif self.gate == Gate.cry:
+            return 2
+        elif self.gate == Gate.crz:
+            return 2
+        elif self.gate == Gate.cu1:
+            return 2
+        elif self.gate == Gate.cu3:
+            return 2
+        elif self.gate == Gate.rxx:
+            return 2
+        elif self.gate == Gate.rzz:
+            return 2
 
 def addGateToCircuit(circuit, gate, params):
     if gate == Gate.h:
@@ -44,15 +90,15 @@ def addGateToCircuit(circuit, gate, params):
         circuit.swap(params[0], params[1])
     elif gate == Gate.cswap:
         circuit.cswap(params[0], params[1], params[2])
-    if gate == Gate.rx:
+    elif gate == Gate.rx:
         circuit.rx(params[0])
-    if gate == Gate.ry:
+    elif gate == Gate.ry:
         circuit.ry(params[0])
-    if gate == Gate.rz:
+    elif gate == Gate.rz:
         circuit.rz(params[0])
-    if gate == Gate.u3:
+    elif gate == Gate.u3:
         circuit.u3(params[0])
-    if gate == Gate.y:
+    elif gate == Gate.y:
         circuit.y(params[0])
     if gate == Gate.u2:
         circuit.u2(params[0])

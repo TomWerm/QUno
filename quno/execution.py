@@ -8,8 +8,10 @@ Created on Wed Sep 30 12:27:21 2020
 from qiskit import *
 
 def calculateResult(circuit):
+    
     # Use Aer's qasm_simulator
     simulator = Aer.get_backend('qasm_simulator')
+    
     # Map the quantum measurement to the classical bits
     circuit.measure(range(3), range(3))
 
@@ -21,6 +23,8 @@ def calculateResult(circuit):
 
     # Returns counts
     counts = result.get_counts()
+    
+    #Extract the result from the first (and only) simulation run
     for count in counts.items():
-        x, y = eval(count.__str__())
+        x, y = eval(counts.items()[0].__str__())
         return str(x)
