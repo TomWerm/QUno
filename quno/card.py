@@ -28,7 +28,10 @@ class Gate(Enum):
     rxx = 27
     rzz = 28
 
-def addGate(circuit, gate, params):
+    def get(self):
+        return self.name
+
+def addGateToCircuit(circuit, gate, params):
     if gate == Gate.h:
         circuit.h(params[0])
     elif gate == Gate.x:

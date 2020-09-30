@@ -5,6 +5,14 @@ class Player (object) :
         self.cards = cards          
     def getInfo(self) :
         return "Name:" + self.name + ", endconfiguration:" + self.endconfig
+    def getCards(self) :
+        cardsStr = ""
+        for card in self.cards:
+            cardsStr += card.gate.get() + "; "
+        return cardsStr
     def getCard(self, index) :
-        return cards[index]
-    
+        return self.cards[index]
+    def addCard(self, card) :
+        self.cards + card
+    def removeCard(self, index) :
+        self.cards.remove(self.cards[index])

@@ -21,5 +21,6 @@ def calculateResult(circuit):
 
     # Returns counts
     counts = result.get_counts()
-    x, y = eval(counts.__str__())
-    return counts.__str__()
+    for count in counts.items():
+        x, y = eval(count.__str__())
+        return str(x)
