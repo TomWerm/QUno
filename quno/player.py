@@ -16,3 +16,5 @@ class Player (object) :
         self.cards + card
     def removeCard(self, index) :
         self.cards.remove(self.cards[index])
+    def hasCards(self):
+        return len(self.cards)>0
